@@ -4,7 +4,7 @@ import { deviceHeight, deviceWidth } from './Dimensions'
 import Icon from 'react-native-vector-icons/Ionicons';
 import Cards from './Cards';
 
-const Home = () => {
+const Home = (props) => {
     const [city, setCity] = useState('')
     const cities = [
         {
@@ -41,7 +41,7 @@ const Home = () => {
             <Text style={{color: 'white', fontSize: 22, fontWeight: 'bold'}}>Search the city by the name</Text>
             <View style={{flexDirection: 'row', justifyContent:'space-between', alignItems: 'center', borderWidth: 1, borderColor: 'white', borderRadius: 20, paddingHorizontal: 10, marginTop: 16}}>
                 <TextInput placeholder='Search City' placeholderTextColor='white' style={{paddingHorizontal: 10, color: 'white', fontSize: 16}} />
-                <TouchableOpacity onPress={() => {}} >
+                <TouchableOpacity onPress={() => {props.navigation.navigate('Details', {name: city})}} >
                     <Icon name="search" size={22} color="white" />
                 </TouchableOpacity>
             </View>
@@ -50,8 +50,7 @@ const Home = () => {
             </Text>
             <FlatList horizontal data={cities} renderItem={({item}) => (
                 <View>
-                <Cards name={item.name} image={item.image} />
-                {console.log(item)}
+                <Cards name={item.name} image={item.image} navigation={props.navigation} />
                 </View>
             )}
             />
