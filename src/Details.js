@@ -7,7 +7,6 @@ import { API_KEY } from './Constants';
 const Details = (props) => {
   const [data, setData] = useState()
   const {name} = props.route.params;
-  console.log(props)
 
   useEffect(() => {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${API_KEY}`)
@@ -16,6 +15,7 @@ const Details = (props) => {
     .catch(err => console.log(err))
   }, [])
 
+  console.log(data)
   return (
     <View>
       <ImageBackground source={require("../assests/images/image1.jpg")} style={{height: deviceHeight, width: deviceWidth}} imageStyle={{opacity: 0.6, backgroundColor: '#000'}} />
@@ -27,7 +27,6 @@ const Details = (props) => {
       {
         data ? <View>
         <Text style={{color: '#fff', fontSize: 40}}>{name}</Text>
-        <Text style={{color: '#fff', fontSize: 22}}>{data[weather][0]['main']}</Text>
         </View> : null
       }
       </View>
